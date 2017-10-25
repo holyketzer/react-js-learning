@@ -1,17 +1,15 @@
 const DOM = React.DOM;
 
-const BlogList = ({ items }) => (
-  DOM.div(
-    null,
-    _.map(
-      items,
-      (item, key) => {
-        console.log(key);
-        return React.createElement(BlogItem, Object.assign(item, { key }));
-      }
+const BlogList = ({ items }) => {
+  const list = _.map(
+    items,
+    (item, key) => (
+      React.createElement(BlogItem, _.assign(item, { key }))
     )
-  )
-)
+  );
+
+  return DOM.div(null, list);
+};
 
 ReactDOM.render(
   React.createElement(BlogList, { items: [
