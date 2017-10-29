@@ -1,5 +1,3 @@
-const DOM = React.DOM;
-
 function NoItemsException() {
    this.message = "Items required";
    this.name = "NoItemsException";
@@ -33,8 +31,8 @@ const items = [
     },
     metadata: {
       author: 'Ivan Ivanov',
-      created_at: new Date(),
-      updated_at: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
       likesCount: 10,
     }
   },
@@ -46,8 +44,8 @@ const items = [
     },
     metadata: {
       author: 'Admin',
-      created_at: new Date(),
-      updated_at: new Date(),
+      createdAt: new Date(2016, 1, 1),
+      updatedAt: new Date(2016, 1, 1),
       likesCount: 5,
     }
   },
@@ -59,8 +57,8 @@ const items = [
     },
     metadata: {
       author: 'SuperAdmin',
-      created_at: new Date(),
-      updated_at: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
       likesCount: 3,
     }
   },

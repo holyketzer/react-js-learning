@@ -1,13 +1,13 @@
 const BlogItem = ({ text, image, metadata }) => {
-  const { author, created_at, updated_at, likesCount } = metadata;
+  const { author, createdAt, updatedAt, likesCount } = metadata;
 
   return DOM.div(
     { style: { margin: '10px' } },
-    React.createElement(TextBox, { fontWeight: 'bold' }, text),
-    React.createElement(TextBox, { fontSize: '16px' }, `Автор ${author}`),
+    React.createElement(TextBox, { style: { fontSize: '20px', fontWeight: 'bold' } }, text),
+    React.createElement(TextBox, { }, `Автор ${author}`),
     React.createElement(Image, image),
-    React.createElement(TimeStamp, { fontSize: '16px', time: created_at }, 'Создано:'),
-    React.createElement(TimeStamp, { fontSize: '16px', time: updated_at }, 'Изменено:'),
+    React.createElement(TimeStamp, { time: createdAt }, 'Создано:'),
+    React.createElement(TimeStamp, { time: updatedAt }, 'Изменено:'),
     React.createElement(Like, { likesCount })
   )
 }
