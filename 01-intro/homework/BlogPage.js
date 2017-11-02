@@ -52,12 +52,10 @@ class BlogPage extends React.Component {
   }
 
   like(post_id) {
-    this.setState((prevState) => {
-      const item = _.find(prevState.items, ['id', post_id]);
-      item.metadata.likesCount += 1;
-      // Обновляется стейт целиком, где функциональный стиль, как сделать по нормальному?
-      return { items: prevState.items }
-    });
+    const items = cloneDeep(this.state.items);
+    const item = _.find(items, ['id', post_id]);
+    item.metadata.likesCount += 1;
+    this.setState({ items });
   }
 
   render() {

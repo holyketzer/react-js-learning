@@ -1,8 +1,8 @@
-const Like = ({ onLike, likesCount }) => (
+const Like = ({ onClick, likesCount }) => (
   <div>
     Likes: <strong>{likesCount}</strong>
     &nbsp;
-    <button onClick={onLike}>Like</button>
+    <button onClick={onClick}>Like</button>
   </div>
 )
 
