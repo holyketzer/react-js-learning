@@ -1,5 +1,7 @@
-const BlogItem = ({ text, image, metadata }) => {
+const BlogItem = ({ id, text, image, metadata, onLike }) => {
   const { author, createdAt, updatedAt, likesCount } = metadata;
+
+  const handleLike = () => ( onLike(id) )
 
   return DOM.div(
     { style: { margin: '10px' } },
@@ -8,7 +10,7 @@ const BlogItem = ({ text, image, metadata }) => {
     React.createElement(Image, image),
     React.createElement(TimeStamp, { time: createdAt }, 'Создано:'),
     React.createElement(TimeStamp, { time: updatedAt }, 'Изменено:'),
-    React.createElement(Like, { likesCount })
+    React.createElement(Like, { likesCount, onClick: () => onLike(id) })
   )
 }
 
