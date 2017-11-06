@@ -1,3 +1,8 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import c3 from 'c3';
+
 class PieChart extends React.Component {
   componentDidMount() {
     this.chart = c3.generate({
@@ -20,6 +25,8 @@ class PieChart extends React.Component {
   render() {
     return (
       <div ref='chart' />
-    )
+    );
   }
 }
+
+export default PieChart;

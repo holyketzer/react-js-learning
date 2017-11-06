@@ -1,11 +1,18 @@
+import React from 'react';
+import DOM from 'react-dom-factories';
+import PropTypes from 'prop-types';
+import _ from 'lodash';
+
+import BlogItem from 'components/widgets/blog/Item';
+
 function NoItemsException() {
-   this.message = "Items required";
-   this.name = "NoItemsException";
+  this.message = 'Items required';
+  this.name = 'NoItemsException';
 }
 
 const BlogList = ({ items, onLike }) => {
   if (items === undefined) {
-     throw new NoItemsException();
+    throw new NoItemsException();
   }
 
   const list = _.map(
@@ -20,4 +27,6 @@ const BlogList = ({ items, onLike }) => {
 
 BlogList.propTypes = {
   items: PropTypes.array,
-}
+};
+
+export default BlogList;
