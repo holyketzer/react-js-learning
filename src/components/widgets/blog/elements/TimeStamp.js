@@ -1,12 +1,14 @@
 import React from 'react';
-import DOM from 'react-dom-factories';
 import moment from 'moment';
+import { Label } from 'semantic-ui-react';
 
 const TimeStamp = ({ time, format, children }) => (
-  DOM.span(
-    { style: {display: 'block'}},
-    `${children} ${moment(time).format(format)}`
-  )
+  <div>
+    <Label>
+      {children}
+      <Label.Detail>{moment(time).format(format)}</Label.Detail>
+    </Label>
+  </div>
 );
 
 TimeStamp.defaultProps = {
