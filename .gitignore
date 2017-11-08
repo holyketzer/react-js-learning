@@ -1,4 +1,4 @@
 .DS_Store
-dist/bundle.js
+dist/*.js
 node_modules/
 semantic/

@@ -16,7 +16,7 @@ module.exports = {
   output: {
     path: path.join(process.cwd(), 'dist'),
     publicPath: '/assets/',
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
   },
 
   module: {
@@ -46,5 +46,9 @@ module.exports = {
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: Infinity,
+    }),
   ]
 };
