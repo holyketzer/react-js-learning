@@ -27,9 +27,11 @@ const BlogItem = ({ id, text, image, metadata, onLike }) => {
 };
 
 BlogItem.propTypes = {
+  id: PropTypes.number,
   text: PropTypes.string,
   image: PropTypes.object,
   metadata: PropTypes.object,
+  onLike: PropTypes.func,
 };
 
 export default BlogItem;

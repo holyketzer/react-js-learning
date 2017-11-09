@@ -12,6 +12,7 @@ const Like = ({ onClick, likesCount }) => (
 
 Like.propTypes = {
   likesCount: PropTypes.number,
+  onClick: PropTypes.func,
 };
 
 export default Like;

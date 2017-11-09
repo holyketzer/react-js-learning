@@ -1,10 +1,11 @@
 import React from 'react';
-import DOM from 'react-dom-factories';
 import PropTypes from 'prop-types';
 
 const TextBox = ({ style, children }) => {
   const { fontSize, fontWeight } = style;
-  return DOM.span({ style: { display: 'block', fontSize, fontWeight }, children });
+  return (
+    <span style={{ display: 'block', fontSize, fontWeight }}>{children}</span>
+  );
 };
 
 TextBox.defaultProps = {

@@ -1,9 +1,14 @@
 import React from 'react';
-import DOM from 'react-dom-factories';
 import PropTypes from 'prop-types';
 
 const Image = ({ src, width, height, alt }) => (
-  DOM.img({ src, width, height, alt })
+  <img
+    src={src}
+    width={width}
+    height={height}
+    alt={alt}
+    style={{ marginTop: '5px' }}
+  />
 );
 
 Image.defaultProps = {

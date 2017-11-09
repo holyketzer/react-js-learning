@@ -27,6 +27,7 @@ const BlogList = ({ items, onLike }) => {
 
 BlogList.propTypes = {
   items: PropTypes.array,
+  onClick: PropTypes.func,
 };
 
 export default BlogList;
