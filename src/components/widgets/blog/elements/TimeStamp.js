@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { Label } from 'semantic-ui-react';
+import Label from 'components/widgets/blog/elements/Label';
 
 const TimeStamp = ({ time, format, children }) => (
-  <div style={{ marginTop: '5px', marginBottom: '5px' }}>
-    <Label>
-      {children}
-      <Label.Detail>{moment(time).format(format)}</Label.Detail>
-    </Label>
-  </div>
+  <Label name={children}>
+    {moment(time).format(format)}
+  </Label>
 );
 
 TimeStamp.defaultProps = {

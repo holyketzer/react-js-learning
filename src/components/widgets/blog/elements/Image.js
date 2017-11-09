@@ -7,7 +7,7 @@ const Image = ({ src, width, height, alt }) => (
     width={width}
     height={height}
     alt={alt}
-    style={{ marginTop: '5px' }}
+    className='block-item'
   />
 );
 

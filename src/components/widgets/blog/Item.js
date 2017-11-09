@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Header, Label } from 'semantic-ui-react';
+import { Header } from 'semantic-ui-react';
 
+import Label from 'components/widgets/blog/elements/Label';
 import Like from 'components/widgets/blog/elements/Like';
 import Image from 'components/widgets/blog/elements/Image';
 import TimeStamp from 'components/widgets/blog/elements/TimeStamp';
@@ -10,14 +11,9 @@ const BlogItem = ({ id, text, image, metadata, onLike }) => {
   const { author, createdAt, updatedAt, likesCount } = metadata;
 
   return (
-    <div style={{ margin: '10px' }}>
+    <div className='block'>
       <Header>{text}</Header>
-      <div>
-        <Label>
-          Автор
-          <Label.Detail>{author}</Label.Detail>
-        </Label>
-      </div>
+      <Label name='Автор'>{author}</Label>
       <Image {...image}/>
       <TimeStamp time={createdAt}>Создано:</TimeStamp>
       <TimeStamp time={updatedAt}>Изменено:</TimeStamp>

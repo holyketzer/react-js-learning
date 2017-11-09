@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Icon } from 'semantic-ui-react';
 
 const Like = ({ onClick, likesCount }) => (
-  <div>
+  <div className='block-item'>
     <Button onClick={onClick}>
       <Icon name='like' /> {likesCount}
     </Button>
