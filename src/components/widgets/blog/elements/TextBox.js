@@ -1,14 +1,19 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
 const TextBox = ({ style, children }) => {
   const { fontSize, fontWeight } = style;
-  return DOM.span({ style: { display: 'block', fontSize, fontWeight }, children });
-}
+  return (
+    <span style={{ display: 'block', fontSize, fontWeight }}>{children}</span>
+  );
+};
 
 TextBox.defaultProps = {
   style: {
     fontSize: '16px',
     fontWeight: 'normal',
   }
-}
+};
 
 TextBox.propTypes = {
   children: PropTypes.string,
@@ -16,4 +21,6 @@ TextBox.propTypes = {
     fontSize: PropTypes.string,
     fontWeight: PropTypes.string,
   }),
-}
+};
+
+export default TextBox;
