@@ -1,16 +1,19 @@
 import React from 'react';
 import _ from 'lodash';
 
-import { items as staticItems } from 'constants/static/items';
 import BlogList from 'components/widgets/blog/List';
 import PieChart from 'components/widgets/blog/PieChart';
+import { fetchPosts } from 'api/posts';
 
 class BlogPage extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = { items: staticItems };
+    this.state = { items: [] };
     this.like = _.bind(this.like, this);
+  }
+
+  componentDidMount() {
+    fetchPosts((res) => this.setState({ items: res }));
   }
 
   like(postId) {
@@ -29,7 +32,7 @@ class BlogPage extends React.Component {
         <BlogList items={items} onLike={this.like}/>
         <PieChart columns={columns}/>
       </div>
-    );
+    );    
   }
 }
 

@@ -4,17 +4,23 @@ import { Header } from 'semantic-ui-react';
 
 import Label from 'components/widgets/blog/elements/Label';
 import Like from 'components/widgets/blog/elements/Like';
+import Link from 'components/widgets/blog/elements/Link';
 import Image from 'components/widgets/blog/elements/Image';
 import TimeStamp from 'components/widgets/blog/elements/TimeStamp';
+import { postPath } from 'helpers/routes';
 
 const BlogItem = ({ id, text, image, metadata, onLike }) => {
   const { author, createdAt, updatedAt, likesCount } = metadata;
 
   return (
     <div className='block'>
-      <Header>{text}</Header>
+      <Header>
+        <Link to={postPath(id)}>{text}</Link>
+      </Header>
       <Label name='Автор'>{author}</Label>
-      <Image {...image}/>
+      <Link to={postPath(id)}>
+        <Image {...image}/>
+      </Link>
       <TimeStamp time={createdAt}>Создано:</TimeStamp>
       <TimeStamp time={updatedAt}>Изменено:</TimeStamp>
       <Like onClick={ () => onLike(id) } likesCount={likesCount} />

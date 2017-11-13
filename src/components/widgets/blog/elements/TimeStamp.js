@@ -16,7 +16,7 @@ TimeStamp.defaultProps = {
 TimeStamp.propTypes = {
   children: PropTypes.string,
   format: PropTypes.string,
-  time: PropTypes.instanceOf(Date),
+  time: PropTypes.string,
 };
 
 export default TimeStamp;
