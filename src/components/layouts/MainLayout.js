@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'components/widgets/blog/elements/Link';
 import { Button, Segment, Header, Container } from 'semantic-ui-react';
-import { rootPath } from 'helpers/routes';
+import { aboutPath, rootPath } from 'helpers/routes';
 import { withRouter } from 'react-router-dom';
 
 const MainLayout = ({ children }) => (
   <Container>
     <Logo />
-    <GoBackButton />
     {children}
     <Footer />
   </Container>
@@ -20,8 +19,9 @@ MainLayout.propTypes = {
 
 const Logo = () => (
   <Segment>
-    <Header>
+    <Header className='header-menu'>
       <Link to={rootPath()}>Super React.js blog</Link>
+      <Link to={aboutPath()}>About</Link>
     </Header>
   </Segment>
 );
@@ -34,6 +34,7 @@ const GoBackButton = withRouter(
 
 const Footer = () => (
   <Segment>
+    <GoBackButton />
     Powered by React.js
   </Segment>
 );

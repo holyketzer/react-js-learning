@@ -1,9 +1,10 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
+import About from 'components/About';
 import BlogPage from 'components/BlogPage';
 import Post from 'components/Post';
-import { rootPath, postPath } from 'helpers/routes';
+import { aboutPath, rootPath, postPath } from 'helpers/routes';
 
 const routes = [
   {
@@ -13,6 +14,10 @@ const routes = [
   {
     path: rootPath(),
     component: BlogPage,
+  },
+  {
+    path: aboutPath(),
+    component: About,
   }
 ];
 
