@@ -6,22 +6,22 @@ import BlogList from 'components/widgets/blog/List';
 import Paginator from 'components/widgets/blog/Paginator';
 import PieChart from 'components/widgets/blog/PieChart';
 import SearchField from 'components/widgets/blog/elements/SearchField';
-import { fetchPosts } from 'api/posts';
 
-class BlogPage extends React.Component {
+class Posts extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { items: [], page: 1, pageCount: 0 };
+
+    this.state = { page: 1, pageCount: 0 };
     this.like = _.bind(this.like, this);
     this.onPageChange = _.bind(this.onPageChange, this);
     this.onSearchChange = _.bind(this.onSearchChange, this);
   }
 
-  componentDidMount() {
-    fetchPosts((items) => {
-      const pageCount = Math.ceil(items.length / this.props.pageSize);
-      this.setState({ items, pageCount });
-    });
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.items) {
+      const pageCount = Math.ceil(nextProps.items.length / this.props.pageSize);
+      this.setState({ pageCount });
+    }
   }
 
   like(postId) {
@@ -40,10 +40,10 @@ class BlogPage extends React.Component {
   }
 
   render() {
-    const items = this.paginateItems(this.filterItems(this.state.items));
+    const items = this.paginateItems(this.filterItems(this.props.items));
 
     const columns = _.map(
-      this.state.items,
+      this.props.items,
       (item) => [item.text, item.metadata.likesCount]
     );
 
@@ -88,12 +88,13 @@ class BlogPage extends React.Component {
   }
 }
 
-BlogPage.defaultProps = {
-  pageSize: 1
+Posts.defaultProps = {
+  pageSize: 2
 };
 
-BlogPage.propTypes = {
-  pageSize: PropTypes.number
+Posts.propTypes = {
+  pageSize: PropTypes.number,
+  items: PropTypes.array
 };
 
-export default BlogPage;
+export default Posts;
