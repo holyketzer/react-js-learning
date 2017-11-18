@@ -12,7 +12,6 @@ class Posts extends React.Component {
     super(props);
 
     this.state = { page: 1, pageCount: 0 };
-    this.like = _.bind(this.like, this);
     this.onPageChange = _.bind(this.onPageChange, this);
     this.onSearchChange = _.bind(this.onSearchChange, this);
   }
@@ -22,13 +21,6 @@ class Posts extends React.Component {
       const pageCount = Math.ceil(nextProps.items.length / this.props.pageSize);
       this.setState({ pageCount });
     }
-  }
-
-  like(postId) {
-    const items = _.cloneDeep(this.state.items);
-    const item = _.find(items, ['id', postId]);
-    item.metadata.likesCount += 1;
-    this.setState({ items });
   }
 
   onSearchChange(event) {
@@ -51,7 +43,7 @@ class Posts extends React.Component {
       <div className='ui grid'>
         <div className="eight wide column">
           <SearchField onChange={this.onSearchChange} />
-          <BlogList items={items} onLike={this.like}/>
+          <BlogList items={items} onLike={this.props.onLike}/>
           <Paginator
             pageCount={this.state.pageCount}
             currentPage={this.state.page}
@@ -94,7 +86,8 @@ Posts.defaultProps = {
 
 Posts.propTypes = {
   pageSize: PropTypes.number,
-  items: PropTypes.array
+  items: PropTypes.array,
+  onLike: PropTypes.func
 };
 
 export default Posts;

@@ -31,3 +31,14 @@ export function fetchPosts() {
       });
   };
 }
+
+const incrementLikes = (id) => ({
+  type: types.INCREMENT_POSTS_LIKES,
+  id
+});
+
+export const handleLike = (id) => (
+  (dispatch) => {
+    dispatch(incrementLikes(id));
+  }
+);

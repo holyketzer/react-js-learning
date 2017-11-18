@@ -17,6 +17,12 @@ export default function(state = initialState, action) {
       return _.assign({}, initialState, { error: true });
     case types.FETCH_POSTS_SUCCESS:
       return _.assign({}, initialState, { entries: action.response });
+    case types.INCREMENT_POSTS_LIKES: {
+      const items = _.cloneDeep(state.entries);
+      const item = _.find(items, ['id', action.id]);
+      item.metadata.likesCount += 1;
+      return _.assign({}, initialState, { entries: items });
+    }
     default:
       return state;
   }

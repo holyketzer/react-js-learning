@@ -32,3 +32,13 @@ export function fetchPost(id) {
       });
   };
 }
+
+const incrementLikes = () => ({
+  type: types.INCREMENT_POST_LIKES
+});
+
+export const handleLike = (id) => (
+  (dispatch) => {
+    dispatch(incrementLikes(id));
+  }
+);
