@@ -4,11 +4,11 @@ import { Item, Segment } from 'semantic-ui-react';
 
 import BlogItem from 'components/widgets/blog/Item';
 
-const Post = ({ item, onLike }) => {
+const Post = ({ item }) => {
   if (item) {
     return (
       <Item.Group>
-        <BlogItem {...item} onLike={onLike} />
+        <BlogItem {...item} />
       </Item.Group>
     );
   }
@@ -22,7 +22,6 @@ const Post = ({ item, onLike }) => {
 
 Post.propTypes = {
   item: PropTypes.object,
-  onLike: PropTypes.func
 };
 
 export default Post;

@@ -10,7 +10,7 @@ function NoItemsException() {
   this.name = 'NoItemsException';
 }
 
-const BlogList = ({ items, onLike }) => {
+const BlogList = ({ items }) => {
   if (items === undefined) {
     throw new NoItemsException();
   }
@@ -18,7 +18,7 @@ const BlogList = ({ items, onLike }) => {
   const list = map(
     items,
     (item) => (
-      React.createElement(BlogItem, assign(item, { key: item.id, onLike }))
+      React.createElement(BlogItem, assign(item, { key: item.id }))
     )
   );
 

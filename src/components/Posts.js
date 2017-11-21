@@ -27,7 +27,7 @@ class Posts extends React.Component {
       <div className='ui grid'>
         <div className="eight wide column">
           <SearchField onChange={this.onSearchChange} />
-          <BlogList items={this.props.items} onLike={this.props.onLike}/>
+          <BlogList items={this.props.items} />
           <Paginator
             pageCount={this.props.pagination.count}
             currentPage={this.props.pagination.current}
@@ -46,7 +46,6 @@ Posts.propTypes = {
   items: PropTypes.array,
   pagination: PropTypes.object,
   onPageChange: PropTypes.func,
-  onLike: PropTypes.func,
   onFilterChange: PropTypes.func
 };
 

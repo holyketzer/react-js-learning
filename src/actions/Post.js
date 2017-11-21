@@ -32,8 +32,3 @@ export function fetchPost(id) {
       });
   };
 }
-
-export const handleLike = (id) => ({
-  type: types.INCREMENT_POST_LIKES,
-  id
-});
