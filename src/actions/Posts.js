@@ -17,11 +17,18 @@ const errorPosts = () => ({
 });
 
 export function fetchPosts() {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch(requestPosts());
+
+    const { posts: { filter, pagination: { current, size } } } = getState();
 
     return request
       .get(`${API_ROOT}/posts`)
+      .query({
+        page: current,
+        pageSize: size,
+        filter
+      })
       .end((err, response) => {
         if (err) {
           dispatch(errorPosts());
@@ -32,13 +39,19 @@ export function fetchPosts() {
   };
 }
 
-const incrementLikes = (id) => ({
-  type: types.INCREMENT_POSTS_LIKES,
-  id
+export const postsPageChange = (page) => ({
+  type: types.POSTS_PAGE_CHANGE,
+  page
 });
 
-export const handleLike = (id) => (
+const postsFilterChange = (filter) => ({
+  type: types.POSTS_FILTER_CHANGE,
+  filter
+});
+
+export const handleFilterChange = (filter) => (
   (dispatch) => {
-    dispatch(incrementLikes(id));
+    dispatch(postsFilterChange(filter));
+    dispatch(fetchPosts());
   }
 );

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import routes, { RouteWithSubRoutes } from 'routes';
 import { Provider } from 'react-redux';
 import { matchPath, Router } from 'react-router';
-import _ from 'lodash';
+import { assign } from 'lodash';
 import { parse } from 'qs';
 
 import MainLayout from 'components/layouts/MainLayout';
@@ -22,8 +22,8 @@ function historyCallback(location) {
     if (match)
     {
       state.routes.push(route);
-      _.assign(state.params, match.params);
-      _.assign(state.query, parse(location.search.substr(1)));
+      assign(state.params, match.params);
+      assign(state.query, parse(location.search.substr(1)));
       prepareData(store, state);
     }
     return match;

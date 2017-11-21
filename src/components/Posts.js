@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
+import { bind, map } from 'lodash';
 
 import BlogList from 'components/widgets/blog/List';
 import Paginator from 'components/widgets/blog/Paginator';
@@ -10,31 +10,15 @@ import SearchField from 'components/widgets/blog/elements/SearchField';
 class Posts extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = { page: 1, pageCount: 0 };
-    this.onPageChange = _.bind(this.onPageChange, this);
-    this.onSearchChange = _.bind(this.onSearchChange, this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.items) {
-      const pageCount = Math.ceil(nextProps.items.length / this.props.pageSize);
-      this.setState({ pageCount });
-    }
+    this.onSearchChange = bind(this.onSearchChange, this);
   }
 
   onSearchChange(event) {
-    this.setState({ filter: event.target.value });
-  }
-
-  onPageChange(page) {
-    this.setState({ page });
+    this.props.onFilterChange(event.target.value);
   }
 
   render() {
-    const items = this.paginateItems(this.filterItems(this.props.items));
-
-    const columns = _.map(
+    const columns = map(
       this.props.items,
       (item) => [item.text, item.metadata.likesCount]
     );
@@ -43,11 +27,11 @@ class Posts extends React.Component {
       <div className='ui grid'>
         <div className="eight wide column">
           <SearchField onChange={this.onSearchChange} />
-          <BlogList items={items} onLike={this.props.onLike}/>
+          <BlogList items={this.props.items} onLike={this.props.onLike}/>
           <Paginator
-            pageCount={this.state.pageCount}
-            currentPage={this.state.page}
-            onChange={this.onPageChange}
+            pageCount={this.props.pagination.count}
+            currentPage={this.props.pagination.current}
+            onChange={this.props.onPageChange}
           />
         </div>
         <div className="eight wide column">
@@ -56,38 +40,14 @@ class Posts extends React.Component {
       </div>
     );
   }
-
-  filterItems(items) {
-    const filter = this.state.filter;
-
-    return _.filter(
-      items,
-      (item) => {
-        if (filter) {
-          return item.text.toLowerCase().includes(filter.toLowerCase());
-        } else {
-          return true;
-        }
-      }
-    );
-  }
-
-  paginateItems(items) {
-    const from = (this.state.page - 1) * this.props.pageSize;
-    const to = from + this.props.pageSize;
-
-    return items.slice(from, to);
-  }
 }
 
-Posts.defaultProps = {
-  pageSize: 2
-};
-
 Posts.propTypes = {
-  pageSize: PropTypes.number,
   items: PropTypes.array,
-  onLike: PropTypes.func
+  pagination: PropTypes.object,
+  onPageChange: PropTypes.func,
+  onLike: PropTypes.func,
+  onFilterChange: PropTypes.func
 };
 
 export default Posts;

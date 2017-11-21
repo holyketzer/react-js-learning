@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { assign, cloneDeep } from 'lodash';
 
 import * as types from 'constants/actionTypes/PostActionTypes';
 
@@ -11,15 +11,19 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case types.FETCH_POST_REQUEST:
-      return _.assign({}, initialState, { isFetching: true });
+      return assign({}, state, { isFetching: true });
     case types.FETCH_POST_ERROR:
-      return _.assign({}, initialState, { error: true });
+      return assign({}, state, { error: true });
     case types.FETCH_POST_SUCCESS:
-      return _.assign({}, initialState, { entry: action.response });
+      return assign({}, state, { entry: action.response });
     case types.INCREMENT_POST_LIKES: {
-      const item = _.cloneDeep(state.entry);
-      item.metadata.likesCount += 1;
-      return _.assign({}, initialState, { entry: item });
+      if (state.entry && state.entry.id == action.id) {
+        const item = cloneDeep(state.entry);
+        item.metadata.likesCount += 1;
+        return assign({}, state, { entry: item });
+      } else {
+        return state;
+      }
     }
     default:
       return state;
