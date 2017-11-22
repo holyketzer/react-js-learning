@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { bind, map } from 'lodash';
 
 import BlogList from 'components/widgets/blog/List';
-import Paginator from 'components/widgets/blog/Paginator';
+import PaginationContainer from 'containers/PaginationContainer';
 import PieChart from 'components/widgets/blog/PieChart';
 import SearchField from 'components/widgets/blog/elements/SearchField';
 
@@ -28,11 +28,7 @@ class Posts extends React.Component {
         <div className="eight wide column">
           <SearchField onChange={this.onSearchChange} />
           <BlogList items={this.props.items} />
-          <Paginator
-            pageCount={this.props.pagination.count}
-            currentPage={this.props.pagination.current}
-            onChange={this.props.onPageChange}
-          />
+          <PaginationContainer />
         </div>
         <div className="eight wide column">
           <PieChart columns={columns}/>
