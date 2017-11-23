@@ -47,7 +47,7 @@ module.exports = {
     "arrow-body-style": 1,
     "arrow-spacing": 1,
     "camelcase": 1,
-    "import/max-dependencies": ["warn", {"max": 10}],
+    "import/max-dependencies": ["warn", {"max": 12}],
     "keyword-spacing": 1,
     "max-len": ["error", 100, 2],
     "newline-per-chained-call": 1,

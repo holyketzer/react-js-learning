@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import DOM from 'react-dom-factories';
 import { Segment } from 'semantic-ui-react';
 
-const Paginator = ({ currentPage, pageCount, onChange }) => {
+const Paginator = ({ currentPage, pageCount, onPageChange }) => {
   const list = Array.apply(null, { length: pageCount }).map((_, index) => {
     const pageNumber = index + 1;
 
@@ -17,7 +17,7 @@ const Paginator = ({ currentPage, pageCount, onChange }) => {
         {
           href: '#',
           key: pageNumber,
-          onClick: () => onChange(pageNumber),
+          onClick: () => onPageChange(pageNumber),
         },
         String(pageNumber)
       );
@@ -30,7 +30,7 @@ const Paginator = ({ currentPage, pageCount, onChange }) => {
 Paginator.propTypes = {
   currentPage: PropTypes.number,
   pageCount: PropTypes.number,
-  onChange: PropTypes.func,
+  onPageChange: PropTypes.func,
 };
 
 export default Paginator;
