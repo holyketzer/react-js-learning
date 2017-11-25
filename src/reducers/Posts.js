@@ -17,8 +17,10 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case types.FETCH_POSTS_REQUEST:
-      return assign({}, state, { isFetching: true });
+    case types.FETCH_POSTS_REQUEST: {
+      const filter = action.filter;
+      return assign({}, state, { isFetching: true, filter });
+    }
     case types.FETCH_POSTS_ERROR:
       return assign({}, state, { error: true });
     case types.FETCH_POSTS_SUCCESS: {
