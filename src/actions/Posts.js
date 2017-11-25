@@ -1,5 +1,4 @@
 import * as types from 'constants/actionTypes/PostsActionTypes';
-
 import { API_CALL } from 'middleware/API';
 
 export function fetchPosts({ page, pageSize, filter }) {
