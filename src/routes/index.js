@@ -13,7 +13,11 @@ const routes = [
     path: rootPath(),
     component: PostsContainer,
     prepareData: (store) => {
-      store.dispatch(fetchPosts());
+      const {
+        posts: { filter, pagination: { current, size } }
+      } = store.getState();
+
+      store.dispatch(fetchPosts({ page: current, pageSize: size, filter }));
     },
     exact: true
   },

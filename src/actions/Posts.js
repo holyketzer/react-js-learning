@@ -1,41 +1,18 @@
-import request from 'superagent';
-
-import { API_ROOT } from 'constants/API';
 import * as types from 'constants/actionTypes/PostsActionTypes';
+import { API_CALL } from 'middleware/API';
 
-const requestPosts = () => ({
-  type: types.FETCH_POSTS_REQUEST
-});
-
-const receivePosts = (response) => ({
-  type: types.FETCH_POSTS_SUCCESS,
-  response
-});
-
-const errorPosts = () => ({
-  type: types.FETCH_POSTS_ERROR
-});
-
-export function fetchPosts() {
-  return (dispatch, getState) => {
-    dispatch(requestPosts());
-
-    const { posts: { filter, pagination: { current, size } } } = getState();
-
-    return request
-      .get(`${API_ROOT}/posts`)
-      .query({
-        page: current,
-        pageSize: size,
-        filter
-      })
-      .end((err, response) => {
-        if (err) {
-          dispatch(errorPosts());
-        } else {
-          dispatch(receivePosts(response.body));
-        }
-      });
+export function fetchPosts({ page, pageSize, filter }) {
+  return {
+    [API_CALL]: {
+      endpoint: '/posts',
+      method: 'GET',
+      query: { page, pageSize, filter },
+      types: [
+        types.FETCH_POSTS_REQUEST,
+        types.FETCH_POSTS_SUCCESS,
+        types.FETCH_POSTS_ERROR
+      ]
+    }
   };
 }
 
@@ -44,14 +21,6 @@ export const postsPageChange = (page) => ({
   page
 });
 
-const postsFilterChange = (filter) => ({
-  type: types.POSTS_FILTER_CHANGE,
-  filter
-});
-
-export const handleFilterChange = (filter) => (
-  (dispatch) => {
-    dispatch(postsFilterChange(filter));
-    dispatch(fetchPosts());
-  }
+export const handleFilterChange = ({page, pageSize, filter}) => (
+  fetchPosts({ page, pageSize, filter })
 );
