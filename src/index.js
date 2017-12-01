@@ -8,7 +8,7 @@ import 'styles/app.css';
 
 const rootElement = document.getElementById('app');
 
-ReactDOM.render(
+ReactDOM.hydrate(
   <AppContainer>
     <App />
   </AppContainer>,
@@ -19,7 +19,7 @@ if (module.hot) {
   module.hot.accept('./App', () => {
     const NextApp = require('./App').default;
 
-    ReactDOM.render(
+    ReactDOM.hydrate(
       <AppContainer>
         <NextApp />
       </AppContainer>,

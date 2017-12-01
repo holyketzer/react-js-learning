@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { bind, map } from 'lodash';
+import Helmet from 'react-helmet';
 
 import BlogList from 'components/widgets/blog/List';
 import PaginationContainer from 'containers/PaginationContainer';
@@ -25,13 +26,17 @@ class Posts extends React.Component {
 
     return (
       <div className='ui grid'>
+        <Helmet title='Список постов'>
+          <meta name='description' content='SEO content goes here' />
+        </Helmet>
+
         <div className="eight wide column">
           <SearchField onChange={this.onSearchChange} />
           <BlogList items={this.props.items} />
           <PaginationContainer />
         </div>
         <div className="eight wide column">
-          <PieChart columns={columns}/>
+          <PieChart columns={columns} />
         </div>
       </div>
     );

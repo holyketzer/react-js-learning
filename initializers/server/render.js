@@ -3,6 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { matchPath, StaticRouter } from 'react-router-dom';
 import { assign } from 'lodash';
+import Helmet from 'react-helmet';
 
 import createStore from 'store';
 import routes, { Routes } from 'routes';
@@ -43,7 +44,9 @@ export default (req, res) => {
       </Provider>
     );
 
+    const helmet = Helmet.rewind();
+
     res.status(200);
-    res.render('index', { initialState, content });
+    res.render('index', { initialState, content, helmet });
   });
 };
