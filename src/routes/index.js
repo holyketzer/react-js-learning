@@ -2,6 +2,8 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 import About from 'components/About';
+import initialLoad from 'helpers/initialLoad';
+import MainLayout from 'components/layouts/MainLayout';
 import PostsContainer from 'containers/PostsContainer';
 import PostContainer from 'containers/PostContainer';
 import { aboutPath, rootPath, postPath } from 'helpers/routes';
@@ -13,20 +15,24 @@ const routes = [
     path: rootPath(),
     component: PostsContainer,
     prepareData: (store) => {
+      if (initialLoad()) {
+        return;
+      }
+
       const {
         posts: { filter, pagination: { current, size } }
       } = store.getState();
 
-      store.dispatch(fetchPosts({ page: current, pageSize: size, filter }));
+      return store.dispatch(fetchPosts({ page: current, pageSize: size, filter }));
     },
     exact: true
   },
   {
     path: postPath(),
     component: PostContainer,
-    prepareData: (store, query, params) => {
-      store.dispatch(fetchPost(params.id));
-    }
+    prepareData: (store, query, params) => (
+      store.dispatch(fetchPost(params.id))
+    )
   },
   {
     path: aboutPath(),
@@ -45,4 +51,14 @@ const RouteWithSubRoutes = (route) => (
   )}/>
 );
 
-export { RouteWithSubRoutes };
+export const Routes = () => (
+  <MainLayout>
+    {
+      routes.map(
+        (route, i) => (
+          <RouteWithSubRoutes key={i} {...route}/>
+        )
+      )
+    }
+  </MainLayout>
+);

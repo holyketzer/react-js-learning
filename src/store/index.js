@@ -4,11 +4,14 @@ import reducers from 'reducers';
 
 import APIMiddleware from 'middleware/API';
 
-const store = createStore(
-  reducers,
-  compose(
-    applyMiddleware(APIMiddleware), 
-    DevTools.instrument()
+const store = (initialState) => (
+  createStore(
+    reducers,
+    initialState,
+    compose(
+      applyMiddleware(APIMiddleware),
+      DevTools.instrument()
+    )
   )
 );
 

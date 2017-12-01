@@ -53,7 +53,7 @@ module.exports = {
     "newline-per-chained-call": 1,
     "no-negated-condition": 1,
     "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1, "maxBOF": 0 }],
-    "no-underscore-dangle": 1,
+    "no-underscore-dangle": 0,
     "no-whitespace-before-property": 1,
     "no-var": 1,
     "object-shorthand": 1,

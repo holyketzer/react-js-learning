@@ -1,14 +1,16 @@
 import { compact } from 'lodash/array';
-import { map } from 'lodash/collection';
+import { map, filter } from 'lodash/collection';
 
 export default function(store, state) {
-  const { location, params, routes } = state;
+  const { query, params, routes } = state;
 
-  const query = '';
   const prepareDataFns = compact(map(routes, route => route.prepareData));
 
-  map(
+  const values = map(
     prepareDataFns,
-    prepareData => prepareData(store, query, params, location)
+    prepareData => prepareData(store, query, params)
   );
+
+  const promises = filter(values);
+  return Promise.all(promises);
 }
