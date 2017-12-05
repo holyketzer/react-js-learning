@@ -1,15 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Item, Segment } from 'semantic-ui-react';
+import Helmet from 'react-helmet';
 
 import BlogItem from 'components/widgets/blog/Item';
 
 const Post = ({ item }) => {
   if (item) {
     return (
-      <Item.Group>
-        <BlogItem {...item} />
-      </Item.Group>
+      <div>
+        <Helmet title={item.text}>
+          <meta name='description' content='SEO content goes here' />
+        </Helmet>
+        <Item.Group>
+          <BlogItem {...item} />
+        </Item.Group>
+      </div>
     );
   }
   else
