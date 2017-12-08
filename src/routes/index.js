@@ -2,11 +2,12 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 import About from 'components/About';
+import Contacts from 'components/Contacts';
 import initialLoad from 'helpers/initialLoad';
 import MainLayout from 'components/layouts/MainLayout';
 import PostsContainer from 'containers/PostsContainer';
 import PostContainer from 'containers/PostContainer';
-import { aboutPath, rootPath, postPath } from 'helpers/routes';
+import { aboutPath, contactsPath, rootPath, postPath } from 'helpers/routes';
 import { fetchPosts } from 'actions/Posts';
 import { fetchPost } from 'actions/Post';
 
@@ -37,6 +38,10 @@ const routes = [
   {
     path: aboutPath(),
     component: About,
+  },
+  {
+    path: contactsPath(),
+    component: Contacts,
   }
 ];
 

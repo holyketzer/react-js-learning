@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'components/widgets/blog/elements/Link';
 import { Button, Segment, Header, Container } from 'semantic-ui-react';
-import { aboutPath, rootPath } from 'helpers/routes';
+import { aboutPath, contactsPath, rootPath } from 'helpers/routes';
 import { withRouter } from 'react-router-dom';
 
 const MainLayout = ({ children }) => (
@@ -22,6 +22,7 @@ const Logo = () => (
     <Header className='header-menu'>
       <Link to={rootPath()}>Super React.js blog</Link>
       <Link to={aboutPath()}>About</Link>
+      <Link to={contactsPath()}>Contacts</Link>
     </Header>
   </Segment>
 );
