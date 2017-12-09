@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field, reduxForm, SubmissionError } from 'redux-form';
-
+import { Field, reduxForm, stopSubmit } from 'redux-form';
 import classNames from 'classnames';
+
+import { updatePost } from 'actions/PostEdit';
 
 const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
   <div className={classNames('ui field', { error })}>
@@ -46,21 +47,11 @@ PostForm.propTypes = {
   reset: PropTypes.func,
 };
 
-const sleep = ms => new Promise(
-  resolve => setTimeout(resolve, ms)
-);
-
-const submit = (values) => (
-  sleep(1000).then(() => {
-    if (values.text.length < 5) {
-      throw new SubmissionError({ text: 'Длина заголовка должна быть больше 5' });
-    } else {
-      alert(JSON.stringify(values));
-    }
-  })
-);
-
 export default reduxForm({
   form: 'postForm',
-  onSubmit: submit,
+  onSubmit: (values, dispatch) => {
+    dispatch(updatePost(values)).catch((error) => {
+      dispatch(stopSubmit('postForm', error.response.body));
+    });
+  },
 })(PostForm);
