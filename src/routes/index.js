@@ -2,11 +2,13 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 import About from 'components/About';
+import Contacts from 'components/Contacts';
 import initialLoad from 'helpers/initialLoad';
 import MainLayout from 'components/layouts/MainLayout';
 import PostsContainer from 'containers/PostsContainer';
+import PostFormContainer from 'containers/PostFormContainer';
 import PostContainer from 'containers/PostContainer';
-import { aboutPath, rootPath, postPath } from 'helpers/routes';
+import { aboutPath, contactsPath, rootPath, editPostPath, postPath } from 'helpers/routes';
 import { fetchPosts } from 'actions/Posts';
 import { fetchPost } from 'actions/Post';
 
@@ -32,11 +34,23 @@ const routes = [
     component: PostContainer,
     prepareData: (store, query, params) => (
       store.dispatch(fetchPost(params.id))
+    ),
+    exact: true
+  },
+  {
+    path: editPostPath(),
+    component: PostFormContainer,
+    prepareData: (store, query, params) => (
+      store.dispatch(fetchPost(params.id))
     )
   },
   {
     path: aboutPath(),
     component: About,
+  },
+  {
+    path: contactsPath(),
+    component: Contacts,
   }
 ];
 

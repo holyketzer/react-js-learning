@@ -7,7 +7,7 @@ import LikeContainer from 'containers/LikeContainer';
 import Link from 'components/widgets/blog/elements/Link';
 import Image from 'components/widgets/blog/elements/Image';
 import TimeStamp from 'components/widgets/blog/elements/TimeStamp';
-import { postPath } from 'helpers/routes';
+import { postPath, editPostPath } from 'helpers/routes';
 
 const BlogItem = ({ id, text, image, metadata }) => {
   const { author, createdAt, updatedAt, likesCount } = metadata;
@@ -16,6 +16,7 @@ const BlogItem = ({ id, text, image, metadata }) => {
     <div className='block'>
       <Header>
         <Link to={postPath(id)}>{text}</Link>
+        <Link to={editPostPath(id)} className="ui button edit-button">Edit</Link>
       </Header>
       <Label name='Автор'>{author}</Label>
       <Link to={postPath(id)}>
