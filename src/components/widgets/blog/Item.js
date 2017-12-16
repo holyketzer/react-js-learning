@@ -36,4 +36,8 @@ BlogItem.propTypes = {
   metadata: PropTypes.object,
 };
 
+BlogItem.defaultProps = {
+  metadata: {}
+};
+
 export default BlogItem;
