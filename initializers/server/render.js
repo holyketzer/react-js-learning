@@ -9,6 +9,7 @@ import createStore from 'store';
 import routes, { Routes } from 'routes';
 
 import prepareData from 'helpers/prepareData';
+import webpackAsset from './webpackAsset';
 
 const store = createStore();
 
@@ -47,6 +48,6 @@ export default (req, res) => {
     const helmet = Helmet.rewind();
 
     res.status(200);
-    res.render('index', { initialState, content, helmet });
+    res.render('index', { initialState, content, helmet, webpackAsset });
   });
 };

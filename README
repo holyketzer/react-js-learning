@@ -1,0 +1,4 @@
+```sh
+docker build . -t holyketzer/react-js-blog
+docker run -it -p 3333:3333 -e API_ENDPOINT="http://docker.for.mac.localhost:3001" holyketzer/react-js-blog
+```
