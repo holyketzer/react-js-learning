@@ -62,7 +62,7 @@ export default {
       sourceMap: 'source-map',
     }),
     new BundleAnalyzerPlugin({
-      analyzeMode: 'static',
+      analyzerMode: 'static',
     })
   ]
 };
